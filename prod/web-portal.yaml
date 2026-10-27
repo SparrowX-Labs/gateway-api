@@ -1,0 +1,7 @@
+apis:
+  web-portal:
+    routeName: web-portal
+    path: /
+    hostname: sparrowx.prod.mo2cloud.com
+    backendService: web-portal
+    servicePort: 80

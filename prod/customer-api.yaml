@@ -1,0 +1,7 @@
+apis:
+  customer-api:
+    routeName: customer-api
+    path: /api/customers
+    hostname: sparrowx.prod.mo2cloud.com
+    backendService: customer-api
+    servicePort: 80
