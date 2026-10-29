@@ -1,7 +1,13 @@
 apis:
-    api-error:
-      routeName: api-error
-      path: /api
-      hostname: sparrowx.dev.mo2cloud.com
-      backendService: api-error
-      servicePort: 80
+  api-error:
+    routeName: api-error
+    path: /api
+    hostname: sparrowx.dev.mo2cloud.com
+    backendService: web-portal
+    servicePort: 80
+    filters:
+      - type: RequestHeaderModifier
+        requestHeaderModifier:
+          add:
+            - name: X-SparrowX-API-Error
+              value: "true"
