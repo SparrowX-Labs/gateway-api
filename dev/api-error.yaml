@@ -1,0 +1,7 @@
+apis:
+    api-error:
+      routeName: api-error
+      path: /api
+      hostname: sparrowx.dev.mo2cloud.com
+      backendService: api-error
+      servicePort: 80
