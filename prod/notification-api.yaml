@@ -1,0 +1,7 @@
+apis:
+  notification-api:
+    routeName: notification-api
+    path: /api/notifications
+    hostname: sparrowx.prod.mo2cloud.com
+    backendService: notification-api
+    servicePort: 80
