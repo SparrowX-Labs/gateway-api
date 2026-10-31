@@ -1,0 +1,7 @@
+apis:
+  task-api:
+    routeName: task-api
+    path: /api/tasks
+    hostname: sparrowx.dev.mo2cloud.com
+    backendService: task-api
+    servicePort: 80
