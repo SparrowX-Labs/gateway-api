@@ -1,0 +1,7 @@
+apis:
+  billing-api:
+    routeName: billing-api
+    path: /api/billing
+    hostname: sparrowx.prod.mo2cloud.com
+    backendService: billing-api
+    servicePort: 80
