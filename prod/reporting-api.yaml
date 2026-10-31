@@ -1,0 +1,7 @@
+apis:
+  reporting-api:
+    routeName: reporting-api
+    path: /api/reporting
+    hostname: sparrowx.prod.mo2cloud.com
+    backendService: reporting-api
+    servicePort: 80
