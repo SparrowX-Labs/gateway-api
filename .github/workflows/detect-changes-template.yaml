@@ -1,0 +1,53 @@
+name: Detect changed Gateway API applications
+
+on:
+  workflow_call:
+    outputs:
+      dev:
+        description: Changed development Argo CD applications as JSON
+        value: ${{ jobs.detect.outputs.dev }}
+      prod:
+        description: Changed production Argo CD applications as JSON
+        value: ${{ jobs.detect.outputs.prod }}
+
+permissions:
+  contents: read
+
+jobs:
+  detect:
+    runs-on: ubuntu-latest
+    outputs:
+      dev: ${{ steps.apps.outputs.dev }}
+      prod: ${{ steps.apps.outputs.prod }}
+    steps:
+      - name: Find changed environment files
+        uses: dorny/paths-filter@v3
+        id: changed
+        with:
+          list-files: json
+          filters: |
+            dev:
+              - 'dev/*.yaml'
+            prod:
+              - 'prod/*.yaml'
+
+      - name: Build Argo CD application lists
+        id: apps
+        shell: bash
+        env:
+          DEV_CHANGED: ${{ steps.changed.outputs.dev }}
+          PROD_CHANGED: ${{ steps.changed.outputs.prod }}
+        run: |
+          set -euo pipefail
+
+          if [[ "$DEV_CHANGED" == "true" ]]; then
+            echo 'dev=["gateway-api-dev"]' >> "$GITHUB_OUTPUT"
+          else
+            echo 'dev=[]' >> "$GITHUB_OUTPUT"
+          fi
+
+          if [[ "$PROD_CHANGED" == "true" ]]; then
+            echo 'prod=["gateway-api-prod"]' >> "$GITHUB_OUTPUT"
+          else
+            echo 'prod=[]' >> "$GITHUB_OUTPUT"
+          fi
