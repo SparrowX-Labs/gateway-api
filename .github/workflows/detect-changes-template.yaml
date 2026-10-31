@@ -20,6 +20,9 @@ jobs:
       dev: ${{ steps.apps.outputs.dev }}
       prod: ${{ steps.apps.outputs.prod }}
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Find changed environment files
         uses: dorny/paths-filter@v3
         id: changed
